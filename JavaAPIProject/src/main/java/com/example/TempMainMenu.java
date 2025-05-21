@@ -4,7 +4,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
-public class A{
+import com.example.tutorial.GamePanel;
+
+public class TempMainMenu{
     public static void main(String[] args) {
         // Create the main frame
         JFrame frame = new JFrame("The Keyboard Warrior");
@@ -30,7 +32,7 @@ public class A{
           @Override
           public void actionPerformed(ActionEvent e) {
               JFrame frame = new JFrame("The Keyboard Warrior");
-              SimpleGame game = new SimpleGame();
+              GamePanel game = new GamePanel();
 
               frame.add(game);
               frame.setSize(400, 300);
