@@ -10,7 +10,7 @@ public class TempMainMenu{
     public static void main(String[] args) {
         // Create the main frame
         JFrame frame = new JFrame("The Keyboard Warrior");
-        frame.setSize(400, 300);
+        frame.setSize(500, 500);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Create components
@@ -35,7 +35,7 @@ public class TempMainMenu{
               GamePanel game = new GamePanel();
 
               frame.add(game);
-              frame.setSize(400, 300);
+              frame.setSize(500, 500);
               frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
               frame.setVisible(true);
           }

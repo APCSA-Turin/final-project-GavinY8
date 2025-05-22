@@ -30,7 +30,7 @@ public class API {
         return content.toString(); //return the content as a string
     }
 
-    static String getWord() {
+    public static String getWord() {
         try {
             String w = getData("https://random-word-api.herokuapp.com/word");
             return w.substring(2, w.length()-2);
