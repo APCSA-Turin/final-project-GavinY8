@@ -33,13 +33,13 @@ public class MVP {
         panel.add(outputArea);
         panel.add(instructions);
         instructions.setEditable(false);
-        //instructions.setText("Instructions: You have the current amount of letters in the word above in second to type it out. \nEach attempt reduces your time by 5%. Good luck.");
+        instructions.setText("Instructions: Type out the word above before the time limit. \nEach attempt reduces your allotted time. Good luck.");
 
         //We have added components to our panel, then we add the PANEL to our FRAME
         frame.add(panel);
 
         // Button behavior
-        inputField.addActionListener(new ActionListener() {
+        Timer timer = new Timer((int)((word[0].length() * 500)*(timerShorten - (0.25*score[0]))) , new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String w = inputField.getText().trim();
@@ -64,8 +64,7 @@ public class MVP {
                 }
             }
         });
-
+        timer.start();
         frame.setVisible(true);
     }
 }
-
