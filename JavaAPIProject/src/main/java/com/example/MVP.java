@@ -57,7 +57,7 @@ public class MVP {
                     lives[0]--;
                     outputArea.setText("Score: " + score[0] + "\nLives: " + lives[0]);
                     if (lives[0] <= 0) {
-                        JOptionPane.showMessageDialog(frame, "yuoer lievr is now mine \nhar har har har", "You Lost!", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(frame, "yuoer lievr is now mine!!!1!11!!! \nhar har har har", "You Lost!", JOptionPane.ERROR_MESSAGE);
                         score[0] = 0;
                         lives[0] = 0;
                     }

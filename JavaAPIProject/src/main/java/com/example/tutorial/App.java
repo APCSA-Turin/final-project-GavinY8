@@ -20,8 +20,6 @@ public class App
         window.setVisible(true);
 
         GamePanel game = new GamePanel();
-        JTextField inputField = new JTextField();
-        panel.add(inputField);
         window.add(game);
 
         window.pack();
