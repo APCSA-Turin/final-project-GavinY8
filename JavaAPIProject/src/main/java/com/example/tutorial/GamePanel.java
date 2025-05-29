@@ -4,27 +4,35 @@ import java.awt.*;
 import javax.swing.*;
 import com.example.entity.*;
 import com.example.monster.monster1;
+import com.example.tile.TileManager;
 
 public class GamePanel extends JPanel implements Runnable {
     final int originalTileSize = 16;
     final int scale = 3;
     public final int tileSize = originalTileSize * scale;
-    final int maxScreenCol = 16;
-    final int maxScreenRow = 12;
-    final int screenWidth = tileSize * maxScreenCol;
-    final int screenHeight = tileSize * maxScreenRow;
+    public final int maxScreenCol = 16;
+    public final int maxScreenRow = 12;
+    public final int screenWidth = tileSize * maxScreenCol;
+    public final int screenHeight = tileSize * maxScreenRow;
+
+    public final int maxWorldCol = 50;
+    public final int maxWorldRow = 50;
+    public final int worldWidth = tileSize * maxWorldCol;
+    public final int worldHeight = tileSize * maxWorldRow;
 
     int FPS = 60;
 
-    Thread gameThread;
+    TileManager tm = new TileManager(this);
 
     Movement m = new Movement();
+    Thread gameThread;
     Player player = new Player(this, m);
 
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
-        this.addKeyListener(m);
+        this.setDoubleBuffered(true);
         this.setFocusable(true);
+        this.addKeyListener(m);
     }
 
     public void startGameThread() {
@@ -40,6 +48,7 @@ public class GamePanel extends JPanel implements Runnable {
         while (gameThread != null) {
             update();
             repaint();
+            this.requestFocusInWindow();
             try {
                 double remainingTime = nextDrawTime - System.nanoTime();
                 remainingTime /= 1000000;
@@ -65,6 +74,7 @@ public class GamePanel extends JPanel implements Runnable {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D graphics = (Graphics2D)g;
+        tm.draw(graphics);
         player.draw(graphics);
         graphics.dispose();
     }

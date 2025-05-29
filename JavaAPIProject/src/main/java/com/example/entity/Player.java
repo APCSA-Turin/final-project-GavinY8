@@ -14,7 +14,7 @@ public class Player extends Entity{
         super(gp);
         this.m = m;
         setDefaultValues();
-        //getPlayerImage();
+        getPlayerImage();
     }
 
     public void setDefaultValues() {
@@ -47,9 +47,7 @@ public class Player extends Entity{
     }
 
     public void draw(Graphics2D gg) {
-        //BufferedImage image = up1;
-        //gg.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
-        gg.setColor(Color.BLUE);
-        gg.fillRect(x, y, gp.tileSize, gp.tileSize);
+        BufferedImage image = up1;
+        gg.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
     }
 }
