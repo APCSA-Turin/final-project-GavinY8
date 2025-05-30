@@ -15,11 +15,14 @@ public class Player extends Entity{
         this.m = m;
         setDefaultValues();
         getPlayerImage();
+
+        solidArea = new Rectangle(16, 16, 16, 16);
+
     }
 
     public void setDefaultValues() {
-        x = 100;
-        y = 100;
+        x = 500;
+        y = 450;
         speed = 4;
     }
 
@@ -32,17 +35,23 @@ public class Player extends Entity{
     }
 
     public void update() {
-        if (m.up) {
-            y -= speed;
-        }
-        if (m.left) {
-            x -= speed;
-        }
-        if (m.down) {
-            y += speed;
-        }
-        if (m.right) {
-            x += speed;
+        collisionOn = false;
+        gp.cc.checkTile(this);
+
+        //stop movement if collision is on
+        if (!collisionOn) {
+            if (m.up) {
+                y -= speed;
+            }
+            if (m.left) {
+                x -= speed;
+            }
+            if (m.down) {
+                y += speed;
+            }
+            if (m.right) {
+                x += speed;
+            }
         }
     }
 
