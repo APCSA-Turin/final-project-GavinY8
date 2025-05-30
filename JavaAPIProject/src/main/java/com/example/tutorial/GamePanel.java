@@ -3,15 +3,14 @@ package com.example.tutorial;
 import java.awt.*;
 import javax.swing.*;
 import com.example.entity.*;
-import com.example.monster.monster1;
 import com.example.tile.TileManager;
 
 public class GamePanel extends JPanel implements Runnable {
     final int originalTileSize = 16;
     final int scale = 3;
     public final int tileSize = originalTileSize * scale;
-    public final int maxScreenCol = 24;
-    public final int maxScreenRow = 16;
+    public final int maxScreenCol = 24; //1152
+    public final int maxScreenRow = 16; //768
     public final int screenWidth = tileSize * maxScreenCol;
     public final int screenHeight = tileSize * maxScreenRow;
 

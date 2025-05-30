@@ -23,7 +23,7 @@ public class Player extends Entity{
     public void setDefaultValues() {
         x = 500;
         y = 450;
-        speed = 4;
+        speed = 6;
     }
 
     public void getPlayerImage() {

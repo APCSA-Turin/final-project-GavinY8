@@ -24,22 +24,22 @@ public class CollisionChecker {
         int tileNum1 = 0, tileNum2 = 0;
 
         if (gp.m.up) {
-            entityTopRow = (entityTopWorldY)/gp.tileSize;
+            entityTopRow = (entityTopWorldY - entity.speed)/gp.tileSize;
             tileNum1 = gp.tm.mapTileNum[entityLeftCol][entityTopRow];
             tileNum2 = gp.tm.mapTileNum[entityRightCol][entityTopRow];
         }
         if (gp.m.left) {
-            entityLeftCol = (entityLeftWorldX)/gp.tileSize;
+            entityLeftCol = (entityLeftWorldX - entity.speed)/gp.tileSize;
             tileNum1 = gp.tm.mapTileNum[entityLeftCol][entityTopRow];
             tileNum2 = gp.tm.mapTileNum[entityLeftCol][entityBottomRow];
         }
         if (gp.m.down) {
-            entityBottomRow = (entityBottomWorldY)/gp.tileSize;
+            entityBottomRow = (entityBottomWorldY + entity.speed)/gp.tileSize;
             tileNum1 = gp.tm.mapTileNum[entityLeftCol][entityBottomRow];
             tileNum2 = gp.tm.mapTileNum[entityRightCol][entityBottomRow];
         }
         if (gp.m.right) {
-            entityRightCol = (entityRightWorldX)/gp.tileSize;
+            entityRightCol = (entityRightWorldX + entity.speed)/gp.tileSize;
             tileNum1 = gp.tm.mapTileNum[entityRightCol][entityTopRow];
             tileNum2 = gp.tm.mapTileNum[entityRightCol][entityBottomRow];
         }

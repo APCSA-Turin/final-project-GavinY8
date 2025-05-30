@@ -14,10 +14,10 @@ public class App
     public static void main( String[] args )
     {
         JFrame window = new JFrame();
-        JPanel panel = new JPanel();//dont delete this you bumcrack
         window.setSize(500, 500);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setVisible(true);
+        window.setResizable(false);
 
         GamePanel game = new GamePanel();
         window.add(game);
