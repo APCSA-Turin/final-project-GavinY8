@@ -26,6 +26,7 @@ public class GamePanel extends JPanel implements Runnable {
     Thread gameThread;
     public CollisionChecker cc = new CollisionChecker(this);
     public Player player = new Player(this, m);
+    public bulletManager bm = new bulletManager(this, player);
 
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -68,6 +69,9 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void update() {
         player.update();
+        for (int i = 0; i < 8; i++) {
+            bm.bulletList[i].update();
+        }
     }
 
     protected void paintComponent(Graphics g) {
@@ -75,6 +79,9 @@ public class GamePanel extends JPanel implements Runnable {
         Graphics2D graphics = (Graphics2D)g;
         tm.draw(graphics);
         player.draw(graphics);
+        for (int i = 0; i < 8; i++) {
+            bm.bulletList[i].draw(graphics);
+        }
         graphics.dispose();
     }
 }
