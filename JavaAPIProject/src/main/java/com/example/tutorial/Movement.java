@@ -25,6 +25,7 @@ public class Movement implements KeyListener {
         if (q==KeyEvent.VK_RIGHT) {
             right = true;
         }
+
     }
 
     @Override

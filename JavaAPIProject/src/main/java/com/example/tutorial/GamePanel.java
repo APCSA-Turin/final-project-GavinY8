@@ -2,6 +2,8 @@ package com.example.tutorial;
 
 import java.awt.*;
 import javax.swing.*;
+
+import com.example.API;
 import com.example.entity.*;
 import com.example.tile.TileManager;
 
@@ -19,28 +21,36 @@ public class GamePanel extends JPanel implements Runnable {
     public final int worldWidth = tileSize * maxWorldCol;
     public final int worldHeight = tileSize * maxWorldRow;
 
+    public String word = API.getWord();
+
+    public int score;
+
     int FPS = 60;
 
     TileManager tm = new TileManager(this);
     Movement m = new Movement();
+    KeyReader kr = new KeyReader(this);
     Thread gameThread;
-    public CollisionChecker cc = new CollisionChecker(this);
     public Player player = new Player(this, m);
-    public bulletManager bm = new bulletManager(this, player);
+    bulletSpawner bs = new bulletSpawner(this, player);
+    public CollisionChecker cc = new CollisionChecker(this);
 
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setDoubleBuffered(true);
         this.setFocusable(true);
         this.addKeyListener(m);
+        this.addKeyListener(kr);
     }
 
+    //starts running the game
     public void startGameThread() {
         gameThread = new Thread(this);
         gameThread.start();
     }
 
     @Override
+    //updates 60 times per second
     public void run() {
         double drawInterval = 1000000000/FPS;
         double nextDrawTime = System.nanoTime() + drawInterval;
@@ -67,21 +77,24 @@ public class GamePanel extends JPanel implements Runnable {
         }
     }
 
+    //updates player and projectile locations
     public void update() {
         player.update();
         for (int i = 0; i < 8; i++) {
-            bm.bulletList[i].update();
+            bs.bulletList[i].update();
         }
     }
 
+    //updates visuals
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D graphics = (Graphics2D)g;
         tm.draw(graphics);
         player.draw(graphics);
         for (int i = 0; i < 8; i++) {
-            bm.bulletList[i].draw(graphics);
+            bs.bulletList[i].draw(graphics);
         }
+        kr.draw(graphics);
         graphics.dispose();
     }
 }

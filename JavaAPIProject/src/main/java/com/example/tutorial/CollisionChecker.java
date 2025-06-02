@@ -1,6 +1,7 @@
 package com.example.tutorial;
 
 import com.example.entity.Entity;
+import com.example.entity.Player;
 import com.example.tutorial.*;
 
 public class CollisionChecker {
@@ -10,7 +11,9 @@ public class CollisionChecker {
         this.gp = gp;
     }
 
-    public void checkTile(Entity entity) {
+
+    //man frick this
+    /*public void checkTile(Entity entity) {
         int entityLeftWorldX = entity.x + entity.solidArea.x;
         int entityRightWorldX = entity.x + entity.solidArea.x + entity.solidArea.width;
         int entityTopWorldY = entity.y + entity.solidArea.y;
@@ -19,7 +22,7 @@ public class CollisionChecker {
         int entityLeftCol = entityLeftWorldX/gp.tileSize;
         int entityRightCol = entityRightWorldX/gp.tileSize;
         int entityTopRow = entityTopWorldY/gp.tileSize;
-        int entityBottomRow = entityBottomWorldY/gp.tileSize;
+        int entityBottomRow = entityBottomWorldY/gp.tileSize-1;
 
         int tileNum1 = 0, tileNum2 = 0;
 
@@ -44,8 +47,24 @@ public class CollisionChecker {
             tileNum2 = gp.tm.mapTileNum[entityRightCol][entityBottomRow];
         }
 
-        if (gp.tm.tile[tileNum1].collision || gp.tm.tile[tileNum2].collision) {
-            entity.collisionOn = true;
+        else if (gp.tm.tile[tileNum1].collision || gp.tm.tile[tileNum2].collision) {
+            entity.x = 560;
+            entity.y = 350;
+        }
+
+    }*/
+
+    public boolean collisionCheck(Entity e1, Player p) {
+        if (e1.solidArea.intersects(p.solidArea)) {
+            return true;
+        }
+        return false;
+    }
+
+    public void tpBack(Entity entity) {
+        if (entity.x > gp.screenWidth-70 || entity.x < 10 || entity.y > gp.screenHeight-70 || entity.y < 10) {
+            entity.x = 560;
+            entity.y = 350;
         }
 
     }
