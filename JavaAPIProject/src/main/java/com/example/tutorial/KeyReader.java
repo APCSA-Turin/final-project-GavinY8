@@ -1,6 +1,7 @@
 package com.example.tutorial;
 
 import com.example.API;
+import com.example.entity.bulletSpawner;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -35,6 +36,9 @@ public class KeyReader implements KeyListener {
         if (gp.word.isEmpty()) {
             gp.word = API.getWord();
             gp.score++;
+            for (int i = 0; i < gp.bs.bulletList.length; i++) {
+                gp.bs.bulletList[i].touchedPlayer = true;
+            }
         }
 
         firstLetter = gp.word.substring(0, 1);

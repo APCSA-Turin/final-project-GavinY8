@@ -18,7 +18,7 @@ public class Player extends Entity{
         setDefaultValues();
         getPlayerImage();
 
-        solidArea = new Rectangle(16, 16, 16, 16);
+        solidArea = new Rectangle(x, y, 48, 48);
     }
 
     public void setDefaultValues() {
@@ -38,6 +38,9 @@ public class Player extends Entity{
     public void update() {
         collisionOn = false;
         gp.cc.tpBack(this);
+
+        solidArea.x = x;
+        solidArea.y = y;
 
         //stop movement if collision is on
         if (!collisionOn) {

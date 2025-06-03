@@ -21,6 +21,8 @@ public class GamePanel extends JPanel implements Runnable {
     public final int worldWidth = tileSize * maxWorldCol;
     public final int worldHeight = tileSize * maxWorldRow;
 
+    boolean run = true;
+
     public String word = API.getWord();
 
     public int score;
@@ -55,7 +57,7 @@ public class GamePanel extends JPanel implements Runnable {
         double drawInterval = 1000000000/FPS;
         double nextDrawTime = System.nanoTime() + drawInterval;
 
-        while (gameThread != null) {
+        while (gameThread != null && run) {
             update();
             repaint();
             this.requestFocusInWindow();
@@ -82,6 +84,15 @@ public class GamePanel extends JPanel implements Runnable {
         player.update();
         for (int i = 0; i < 8; i++) {
             bs.bulletList[i].update();
+            if (cc.collisionCheck(bs.bulletList[i], player) && !bs.bulletList[i].touchedPlayer) {
+                player.hp--;
+                bs.bulletList[i].touchedPlayer = true;
+            }
+        }
+
+        if (player.hp == 0) {
+            run = false;
+            JOptionPane.showMessageDialog(this, "yuoer lievr is now mine!!!1!11!!! \nhar har har har \nclose the app bruh", "You Lost!", JOptionPane.ERROR_MESSAGE);
         }
     }
 

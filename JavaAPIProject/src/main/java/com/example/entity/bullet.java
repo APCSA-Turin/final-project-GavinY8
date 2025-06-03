@@ -10,7 +10,7 @@ public class bullet extends Entity {
 
     int count = 0;
     Player p;
-    boolean touchedPlayer;
+    public boolean touchedPlayer;
 
     public bullet(GamePanel gp, Player p) {
         super(gp);
@@ -20,10 +20,12 @@ public class bullet extends Entity {
         solidArea = new Rectangle(x, y, 32, 32);
         speed = 6;
         getImage();
-        setLocation();
+        resetLocation();
     }
 
-    public void setLocation() {
+    public void resetLocation() {
+        touchedPlayer = false;
+
         int row = (int)(Math.random()*10);
         int direct = (int)(Math.random()*4+1);
         int plusOrMinus = (int)(Math.random()*2);
@@ -61,10 +63,12 @@ public class bullet extends Entity {
     }
 
     public void update() {
-        touchedPlayer = false;
+
+        solidArea.x = x;
+        solidArea.y = y;
 
         if (x > gp.screenWidth || x < 0 || y < 0 || y > gp.screenHeight) {
-            setLocation();
+            resetLocation();
         }
 
         switch (direction) {
@@ -82,10 +86,7 @@ public class bullet extends Entity {
                 break;
         }
 
-        if (gp.cc.collisionCheck(this, gp.player) && !touchedPlayer) {
-            gp.player.hp--;
-            touchedPlayer = true;
-        }
+
     }
 
     public void getImage() {
@@ -99,9 +100,5 @@ public class bullet extends Entity {
     public void draw(Graphics2D g) {
         BufferedImage image = up1;
         g.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
-    }
-
-    public void collision() {
-
     }
 }

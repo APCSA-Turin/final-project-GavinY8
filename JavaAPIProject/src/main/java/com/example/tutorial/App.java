@@ -1,9 +1,10 @@
 package com.example.tutorial;
 import org.json.JSONObject;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * Hello world!
@@ -14,16 +15,31 @@ public class App
     public static void main( String[] args )
     {
         JFrame window = new JFrame();
-        window.setSize(500, 500);
+        window.setSize(1152, 768);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setVisible(true);
         window.setResizable(false);
 
-        GamePanel game = new GamePanel();
-        window.add(game);
+        JButton fetchButton = new JButton("Press to start! (please for the love of god only click it once)");
+        fetchButton.setSize(461, 307);
+        fetchButton.setBackground(Color.BLACK);
+        fetchButton.setForeground(Color.WHITE);
+        window.add(fetchButton);
 
-        window.pack();
 
-        game.startGameThread();
+        fetchButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                window.remove(fetchButton);
+
+                GamePanel game = new GamePanel();
+                window.add(game);
+
+                window.pack();
+
+                game.startGameThread();
+            }
+        });
+        window.setVisible(true);
+
     }
 }
